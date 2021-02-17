@@ -1,0 +1,92 @@
+/*
+  Icon Font: fontcustom
+*/
+
+@font-face {
+  font-family: "fontcustom";
+  src: url("./fontcustom.eot");
+  src: url("./fontcustom.eot?#iefix") format("embedded-opentype"),
+       url("./fontcustom.woff2") format("woff2"),
+       url("./fontcustom.woff") format("woff"),
+       url("./fontcustom.ttf") format("truetype"),
+       url("./fontcustom.svg#fontcustom") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "fontcustom";
+    src: url("./fontcustom.svg#fontcustom") format("svg");
+  }
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.icon-arrow-close:before,
+.icon-arrow-down:before,
+.icon-arrow-full:before,
+.icon-arrow-left:before,
+.icon-arrow-right:before,
+.icon-arrow-shrink:before,
+.icon-arrow-up:before,
+.icon-circle-refresh:before,
+.icon-collect:before,
+.icon-collect-full:before,
+.icon-comment:before,
+.icon-delete:before,
+.icon-home:before,
+.icon-lock:before,
+.icon-menu:before,
+.icon-more:before,
+.icon-nowcoder:before,
+.icon-post:before,
+.icon-preview:before,
+.icon-right:before,
+.icon-setting:before,
+.icon-thumb:before,
+.icon-thumb-full:before,
+.icon-time:before,
+.icon-zhi-no:before,
+.icon-zhi-yes:before {
+  display: inline-block;
+  font-family: "fontcustom";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.icon-arrow-close:before { content: "\f105"; }
+.icon-arrow-down:before { content: "\f106"; }
+.icon-arrow-full:before { content: "\f107"; }
+.icon-arrow-left:before { content: "\f108"; }
+.icon-arrow-right:before { content: "\f109"; }
+.icon-arrow-shrink:before { content: "\f10a"; }
+.icon-arrow-up:before { content: "\f10b"; }
+.icon-circle-refresh:before { content: "\f110"; }
+.icon-collect:before { content: "\f10c"; }
+.icon-collect-full:before { content: "\f10d"; }
+.icon-comment:before { content: "\f111"; }
+.icon-delete:before { content: "\f112"; }
+.icon-home:before { content: "\f101"; }
+.icon-lock:before { content: "\f104"; }
+.icon-menu:before { content: "\f102"; }
+.icon-more:before { content: "\f119"; }
+.icon-nowcoder:before { content: "\f100"; }
+.icon-post:before { content: "\f118"; }
+.icon-preview:before { content: "\f117"; }
+.icon-right:before { content: "\f113"; }
+.icon-setting:before { content: "\f116"; }
+.icon-thumb:before { content: "\f10e"; }
+.icon-thumb-full:before { content: "\f10f"; }
+.icon-time:before { content: "\f103"; }
+.icon-zhi-no:before { content: "\f114"; }
+.icon-zhi-yes:before { content: "\f115"; }

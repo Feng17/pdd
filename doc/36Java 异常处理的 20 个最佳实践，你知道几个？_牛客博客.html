@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390 -->
+<html style="font-size: 100px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="异常处理是 Java 开发中的一个重要部分，是为了处理任何错误状况，比如资源不可访问，非法输入，空输入等等。Java 提供了几个异常处理特性，以try，catch 和 finally 关键字的形式内建">
+<meta name="keywords" content="应届生,应届生求职,校园招聘,校招,春招,秋招,实习,笔试,笔试题库,面试,面试题库,程序员,程序猿,程序猿,产品经理,PM,运营,游戏策划,软件工程师,java,c/c++,php,python,算法,机器学习,人工智能,数据挖掘,数据分析,数据分析师,前端工程师,测试工程师,测试开发工程师,运维工程师,安卓工程师,ios工程师,android,硬件工程师,电气工程师,嵌入式工程师,汽车制造研发,审计,会计,财务管理,市场营销,品牌管理,金融,四大,法务,销售,行政,人力资源,hr,管培生,地产,国企,银行,实习,实习生,招聘,找工作,牛客网">
+<title>Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客</title>
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"><link charset="utf-8" rel="stylesheet" href="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/katex.min.css"><link charset="utf-8" rel="stylesheet" href="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/index.css"><script async="" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/katex.min.js.下载"></script><script async="" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/index.js.下载"></script><script async="" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/auto-render.min.js.下载"></script><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/jlzs.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/select.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/input.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/checkbox.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/jlzs.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/select.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/input.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/checkbox.css" rel="stylesheet" type="text/css"></head><body><div id="wx_logo" style="margin:0 auto;display:none;"><img src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/logo_87_87.png"></div>
+<script async="" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/gio.js.下载"></script><script type="text/javascript">
+(function () {
+document.documentElement.style.fontSize = '100px';
+var meta = document.querySelector('meta[name="viewport"]');
+if (!meta) {
+meta = document.createElement('meta');
+meta.setAttribute('name', 'viewport');
+document.head.appendChild(meta);
+}
+meta.setAttribute('content', 'width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0');
+})();
+</script>
+<link rel="stylesheet" href="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/fontcustom.css">
+<link rel="stylesheet" href="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/common.css">
+<script type="text/javascript">
+var _hmt = _hmt || [];
+</script>
+<script type="text/javascript" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/hm.js.下载"></script>
+<link rel="stylesheet" type="text/css" href="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/main.entry.css">
+
+
+<div class="nk-blog-container blog-theme-6  no-banner-page ">
+<div class="flex-row-start nk-blog-header js-site-global-nav  is-fixed ">
+<div class="only-phone flex-row-start hide-txt flex-auto">
+<i class="icon-menu icon-l mr-1 js-nav-menu"></i>
+<span class="hide-txt nav-username js-nav-menu">武培轩</span>
+</div>
+<div class="only-phone" style="flex:none;"></div>
+<div class="only-pc flex-row-start hide-txt flex-auto">
+<a href="https://blog.nowcoder.net/wupx"><img class="nav-avatar" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA"></a>
+<a class="hide-txt nav-username ml-1" href="https://blog.nowcoder.net/wupx">武培轩</a>
+<div class="flex-row-start ml-4 hide-txt">
+<a class="mr-2 pr-2 vux-1px-r" href="https://blog.nowcoder.net/wupx/20498" "="">Java</a>
+<a class="hide-txt" href="javascript:void(0);">Java 异常处理的 20 个最佳实践，你知道几个？</a>
+</div>
+</div>
+<div class="only-pc flex-row-start blog-custom-nav flex-none">
+<div class="blog-custom-nav-item"><i class="icon-home mr-1"></i><a href="https://www.nowcoder.com/" target="_blank">去牛客网</a></div>
+</div>
+</div>
+<div class="nk-blog-main">
+<div class="js-top-part bg-white mb-2 vux-1px-tb">
+<div class="module-box module-article">
+<h1 class="title-item strong fs-xxl mb-2">
+Java 异常处理的 20 个最佳实践，你知道几个？
+<a href="javascript:void(0);" class="tag-label rectangle default single">已购</a>
+
+</h1>
+<div class="mb-4">
+<div class="flex-row-start color-gray fs-s mb-2">
+<span class="mr-2 pr-2 vux-1px-r hide-txt">来自
+<a class="hide-txt" href="https://blog.nowcoder.net/zhuanlan/9MRo0P" target="_blank">【后端核心技术精讲】
+</a>
+</span>
+<span class="mr-2 pr-2 vux-1px-r flex-none">88 浏览</span>
+<span class="mr-2 pr-2 vux-1px-r flex-none">1 回复</span>
+<span class="flex-none">2020-04-05</span>
+<a href="javascript:void(0);" class="set-quality ml-2 only-pc flex-none" data-uuid="d50a721c950d4cd48f7b02df201c8390" data-id="85362">
+</a>
+</div>
+<div class="flex-row">
+<a href="https://blog.nowcoder.net/profile/5033606"><img src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA(1)" class="avatar flex-none"></a>
+<div class="ml-2 flex-auto flex-row-start hide-txt">
+<div class="hide-txt"><a href="https://blog.nowcoder.net/profile/5033606" class="level-color8">武培轩</a>
+</div>
+<a href="https://www.nowcoder.com/discuss/224330" class="flex-none zlzz-icon">
+<img class="ml-1" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/4533123_1584605346929_71FD1A643C56A33AE29EBE57679BDBE3">
+</a>
+</div>
+<div class="ml-2 flex-none">
+<a class="tag-label selected no-mb js-action-follow" href="javascript:void(0);">+关注</a>
+</div>
+</div>
+</div>
+<div class="mb-4 js-post-content">
+<div class="post-content js-nc-pop-image"><p>异常处理是 Java 开发中的一个重要部分，是为了处理任何错误状况，比如资源不可访问，非法输入，空输入等等。Java 提供了几个异常处理特性，以try，catch 和 finally 关键字的形式内建于语言自身之中。Java 编程语言也允许创建新的自定义异常，并通过使用 throw 和 throws关键字抛出它们。在Java编程中，Java 的异常处理不单单是知道语法这么简单，它必须遵循标准的 JDK 库，和处理错误和异常的开源代码。</p> <p>这里我们将讨论一些关于异常处理的 Java 最佳实践。在我们讨论异常处理的最佳实践之前，先让我们了解下几个重要的概念，那就是什么是异常以及异常的分类。</p> <h1>什么是异常？</h1> <p>异常的英文单词是 exception，异常本质上是程序上的错误，包括程序逻辑错误和系统错误。比如使用空的引用、数组下标越界、内存溢出错误等，这些都是意外的情况，背离我们程序本身的意图。错误在我们编写程序的过程中会经常发生，包括编译期间和运行期间的错误，在编译期间出现的错误有编译器帮助我们一起修正，然而运行期间的错误便不是编译器力所能及了，并且运行期间的错误往往是难以预料的。假若程序在运行期间出现了错误，如果置之不理，程序便会终止或直接导致系统崩溃，显然这不是我们希望看到的结果。</p> <p>如何对运行期间出现的错误进行处理和补救呢？Java 提供了异常机制来进行处理，通过异常机制来处理程序运行期间出现的错误。通过异常机制，我们可以更好地提升程序的健壮性。</p> <h1>异常分类</h1> <p>Java 把异常当作对象来处理，并定义一个基类 java.lang.Throwable 作为所有异常的超类。</p> <p>Java 包括三种类型的异常: 检查性异常(checked exceptions)、非检查性异常(unchecked Exceptions) 和错误(errors)。</p> <ul> <li>检查性异常(checked exceptions) 是必须在在方法的 throws 子句中声明的异常。它们扩展了异常，旨在成为一种“在你面前”的异常类型。JAVA希望你能够处理它们，因为它们以某种方式依赖于程序之外的外部因素。检查的异常表示在正常系统操作期间可能发生的预期问题。 当你尝试通过网络或文件系统使用外部系统时，通常会发生这些异常。 大多数情况下，对检查性异常的正确响应应该是稍后重试，或者提示用户修改其输入。  </li><li>非检查性异常(unchecked Exceptions) 是不需要在throws子句中声明的异常。 由于程序错误，JVM并不会强制你处理它们，因为它们大多数是在运行时生成的。 它们扩展了 RuntimeException。 最常见的例子是 NullPointerException， 未经检查的异常可能不应该重试，正确的操作通常应该是什么都不做，并让它从你的方法和执行堆栈中出来。  </li><li>错误(errors) 是严重的运行时环境问题，肯定无法恢复。 例如 OutOfMemoryError，LinkageError 和 StackOverflowError，通常会让程序崩溃。 </li></ul> <p>所有不是 Runtime Exception 的异常，统称为 Checked Exception，又被称为检查性异常。这类异常的产生不是程序本身的问题，通常由外界因素造成的。为了预防这些异常产生时，造成程序的中断或得到不正确的结果，Java 要求编写可能产生这类异常的程序代码时，一定要去做异常的处理。</p> <p>Java 语言将派生于 RuntimeException 类或 Error 类的所有异常称为非检查性异常。</p> <p>Java 异常层次结构图如下图所示：</p> <p><img alt="Java中的异常层次结构" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/5033606_1586080854182_20191025233711143.png"></p> <p>在了解了异常的基本概念以及分类后，现在让我们开始探索异常处理的最佳实践吧。</p> <h1>异常处理最佳实践</h1> <h2>不要忽略捕捉的异常</h2> <div><div id="highlighter_988054980380" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">catch</code> <code class="java plain">(NoSuchMethodException e) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java keyword">null</code><code class="java plain">;</code></div><div class="line number3 index2 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>虽然捕捉了异常但是却没有做任何处理，除非你确信这个异常可以忽略，不然不应该这样做。这样会导致外面无法知晓该方法发生了错误，无法确定定位错误原因。</p> <h2>在你的方法里抛出定义具体的检查性异常</h2> <div><div id="highlighter_668488237561" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">foo() </code><code class="java keyword">throws</code> <code class="java plain">Exception { </code><code class="java comments">//错误方式</code></div><div class="line number2 index1 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>一定要避免出现上面的代码示例，它破坏了检查性异常的目的。 声明你的方法可能抛出的具体检查性异常，如果只有太多这样的检查性异常，你应该把它们包装在你自己的异常中，并在异常消息中添加信息。 如果可能的话，你也可以考虑代码重构。</p> <div><div id="highlighter_710297389887" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">foo() </code><code class="java keyword">throws</code> <code class="java plain">SpecificException1, SpecificException2 { </code><code class="java comments">//正确方式</code></div><div class="line number2 index1 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><h2>捕获具体的子类而不是捕获 Exception 类</h2> <div><div id="highlighter_766048265113" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">try</code> <code class="java plain">{</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">someMethod();</code></div><div class="line number3 index2 alt2"><code class="java plain">} </code><code class="java keyword">catch</code> <code class="java plain">(Exception e) { </code><code class="java comments">//错误方式</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">LOGGER.error(</code><code class="java string">"method has failed"</code><code class="java plain">, e);</code></div><div class="line number5 index4 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>捕获异常的问题是，如果稍后调用的方法为其方法声明添加了新的检查性异常，则开发人员的意图是应该处理具体的新异常。如果你的代码只是捕获异常（或 Throwable），永远不会知道这个变化，以及你的代码现在是错误的，并且可能会在运行时的任何时候中断。</p> <h2>永远不要捕获 Throwable 类</h2> <p>这是一个更严重的麻烦，因为 Java Error 也是 Throwable 的子类，Error 是 JVM 本身无法处理的不可逆转的条件，对于某些 JVM 的实现，JVM 可能实际上甚至不会在 Error 上调用 catch 子句。</p> <h2>始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失</h2> <div><div id="highlighter_467301564234" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">catch</code> <code class="java plain">(NoSuchMethodException e) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">throw</code> <code class="java keyword">new</code> <code class="java plain">MyServiceException(</code><code class="java string">"Some information: "</code> <code class="java plain">+ e.getMessage());&nbsp; </code><code class="java comments">//错误方式</code></div><div class="line number3 index2 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>这破坏了原始异常的堆栈跟踪，并且始终是错误的，正确的做法是：</p> <div><div id="highlighter_671177602798" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">catch</code> <code class="java plain">(NoSuchMethodException e) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">throw</code> <code class="java keyword">new</code> <code class="java plain">MyServiceException(</code><code class="java string">"Some information: "</code> <code class="java plain">, e);&nbsp; </code><code class="java comments">//正确方式</code></div><div class="line number3 index2 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><h2>要么记录异常要么抛出异常，但不要一起执行</h2> <div><div id="highlighter_709822902595" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">catch</code> <code class="java plain">(NoSuchMethodException e) {&nbsp; </code></div><div class="line number2 index1 alt1"><code class="java comments">//错误方式 </code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">LOGGER.error(</code><code class="java string">"Some information"</code><code class="java plain">, e);</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">throw</code> <code class="java plain">e;</code></div><div class="line number5 index4 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>正如上面的代码中，记录和抛出异常会在日志文件中产生多条日志消息，代码中存在单个问题，并且对尝试分析日志的同事很不友好。</p> <h2>finally 块中永远不要抛出任何异常</h2> <div><div id="highlighter_538189898885" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">try</code> <code class="java plain">{</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">someMethod();&nbsp; </code><code class="java comments">//Throws exceptionOne</code></div><div class="line number3 index2 alt2"><code class="java plain">} </code><code class="java keyword">finally</code> <code class="java plain">{</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">cleanUp();&nbsp;&nbsp;&nbsp; </code><code class="java comments">//如果finally还抛出异常，那么exceptionOne将永远丢失</code></div><div class="line number5 index4 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>只要 cleanUp() 永远不会抛出任何异常，上面的代码没有问题，但是如果 someMethod() 抛出一个异常，并且在 finally 块中，cleanUp() 也抛出另一个异常，那么程序只会把第二个异常抛出来，原来的第一个异常（正确的原因）将永远丢失。如果在 finally 块中调用的代码可能会引发异常，请确保要么处理它，要么将其记录下来。永远不要让它从 finally 块中抛出来。</p> <h2>始终只捕获实际可处理的异常</h2> <div><div id="highlighter_484848104830" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">catch</code> <code class="java plain">(NoSuchMethodException e) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">throw</code> <code class="java plain">e; </code><code class="java comments">//避免这种情况，因为它没有任何帮助</code></div><div class="line number3 index2 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>这是最重要的概念，不要为了捕捉异常而捕捉，只有在想要处理异常时才捕捉异常，或者希望在该异常中提供其他上下文信息。如果你不能在 catch 块中处理它，那么最好的建议就是不要只为了重新抛出它而捕获它。</p> <h2>不要使用 printStackTrace() 语句或类似的方法</h2> <p>完成代码后，切勿忽略 printStackTrace()，最终别人可能会得到这些堆栈，并且对于如何处理它完全没有任何方法，因为它不会附加任何上下文信息。</p> <h2>对于不打算处理的异常，直接使用 finally</h2> <div><div id="highlighter_3939375817" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">try</code> <code class="java plain">{</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">someMethod();&nbsp; </code><code class="java comments">//Method 2</code></div><div class="line number3 index2 alt2"><code class="java plain">} </code><code class="java keyword">finally</code> <code class="java plain">{</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">cleanUp();&nbsp;&nbsp;&nbsp; </code><code class="java comments">//do cleanup here</code></div><div class="line number5 index4 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>这是一个很好的做法，如果在你的方法中你正在访问 Method 2，而 Method 2 抛出一些你不想在 Method 1 中处理的异常，但是仍然希望在发生异常时进行一些清理，然后在 finally 块中进行清理，不要使用 catch 块。</p> <h2>记住早 throw 晚 catch 原则</h2> <p>这可能是关于异常处理最著名的原则，简单说，应该尽快抛出(throw)异常，并尽可能晚地捕获(catch)它。应该等到有足够的信息来妥善处理它。</p> <p>这个原则隐含地说，你将更有可能把它放在低级方法中，在那里你将检查单个值是否为空或不适合。而且你会让异常堆栈跟踪上升好几个级别，直到达到足够的抽象级别才能处理问题。</p> <h2>在异常处理后清理资源</h2> <p>如果你正在使用数据库连接或网络连接等资源，请确保清除它们。如果你正在调用的 API 仅使用非检查性异常，则仍应使用 try-finally 块来清理资源。 在 try 模块里面访问资源，在 finally 里面最后关闭资源。即使在访问资源时发生任何异常，资源也会优雅地关闭。</p> <h2>只抛出和方法相关的异常</h2> <p>相关性对于保持应用程序清洁非常重要。一种尝试读取文件的方法，如果抛出 NullPointerException，那么它不会给用户任何相关的信息。相反，如果这种异常被包裹在自定义异常中，则会更好。NoSuchFileFoundException 则对该方法的用户更有用。</p> <h2>切勿在程序中使用异常来进行流程控制</h2> <p>不要在项目中出现使用异常来处理应用程序逻辑。永远不要这样做，它会使代码很难阅读和理解。</p> <h2>尽早验证用户输入以在请求处理的早期捕获异常</h2> <p>始终要在非常早的阶段验证用户输入，甚至在达到 controller 之前，它将帮助你把核心应用程序逻辑中的异常处理代码量降到最低。如果用户输入出现错误，还可以保证与应用程序一致。</p> <p>例如：如果在用户注册应用程序中，遵循以下逻辑：</p> <ol> <li>验证用户 </li><li>插入用户 </li><li>验证地址 </li><li>插入地址 </li><li>如果出问题回滚一切 </li></ol> <p>这是不正确的做法，它会使数据库在各种情况下处于不一致的状态，应该首先验证所有内容，然后将用户数据置于 dao 层并进行数据库更新。正确的做法是：</p> <ol> <li>验证用户 </li><li>验证地址 </li><li>插入用户 </li><li>插入地址 </li><li>如果问题回滚一切 </li></ol> <h2>一个异常只能包含在一个日志中</h2> <div><div id="highlighter_79842961138" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">LOGGER.debug(</code><code class="java string">"Using cache sector A"</code><code class="java plain">);</code></div><div class="line number2 index1 alt1"><code class="java plain">LOGGER.debug(</code><code class="java string">"Using retry sector B"</code><code class="java plain">);</code></div></div></td></tr></tbody></table></div></div></div><p>不要像上面这样做，对多个 LOGGER.debug() 调用使用多行日志消息可能在你的测试用例中看起来不错，但是当它在具有 100 个并行运行的线程的应用程序服务器的日志文件中显示时，所有信息都输出到相同的日志文件，即使它们在实际代码中为前后行，但是在日志文件中这两个日志消息可能会间隔 100 多行。应该这样做：</p> <div><div id="highlighter_342592493909" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">LOGGER.debug(</code><code class="java string">"Using cache sector A, using retry sector B"</code><code class="java plain">);</code></div></div></td></tr></tbody></table></div></div></div><h2>将所有相关信息尽可能地传递给异常</h2> <p>有用的异常消息和堆栈跟踪非常重要，如果你的日志不能定位异常位置，那要日志有什么用呢？ </p> <h2>终止掉被中断线程</h2> <div><div id="highlighter_93047358823" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">while</code> <code class="java plain">(</code><code class="java keyword">true</code><code class="java plain">) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java keyword">try</code> <code class="java plain">{</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread.sleep(</code><code class="java value">100000</code><code class="java plain">);</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">} </code><code class="java keyword">catch</code> <code class="java plain">(InterruptedException e) {} </code><code class="java comments">//别这样做</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">doSomethingCool();</code></div><div class="line number6 index5 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>InterruptedException 异常提示应该停止程序正在做的事情，比如事务超时或线程池被关闭等。</p> <p>应该尽最大努力完成正在做的事情，并完成当前执行的线程，而不是忽略 InterruptedException。修改后的程序如下：</p> <div><div id="highlighter_591297244912" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">while</code> <code class="java plain">(</code><code class="java keyword">true</code><code class="java plain">) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java keyword">try</code> <code class="java plain">{</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Thread.sleep(</code><code class="java value">100000</code><code class="java plain">);</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">} </code><code class="java keyword">catch</code> <code class="java plain">(InterruptedException e) {</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">break</code><code class="java plain">;</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number7 index6 alt2"><code class="java plain">}</code></div><div class="line number8 index7 alt1"><code class="java plain">doSomethingCool();</code></div></div></td></tr></tbody></table></div></div></div><h2>对于重复的 try-catch，使用模板方法</h2> <p>在代码中有许多类似的 catch 块是无用的，只会增加代码的重复性，针对这样的问题可以使用模板方法。</p> <p>例如，在尝试关闭数据库连接时的异常处理。</p> <div><div id="highlighter_513794958189" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">class</code> <code class="java plain">DBUtil{</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">closeConnection(Connection conn){</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">try</code><code class="java plain">{</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">conn.close();</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">} </code><code class="java keyword">catch</code><code class="java plain">(Exception ex){</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//Log Exception - Cannot close connection</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number9 index8 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><p>这类的方法将在应用程序很多地方使用。不要把这块代码放的到处都是，而是定义上面的方法，然后像下面这样使用它：</p> <div><div id="highlighter_859777289477" class="nc-syntaxhighlighter"><div class="toolbar"><span><a href="https://blog.nowcoder.net/n/d50a721c950d4cd48f7b02df201c8390#" class="toolbar_item command_copyCode copyCode">复制代码</a></span></div><div class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">dataAccessCode() {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Connection conn = </code><code class="java keyword">null</code><code class="java plain">;</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">try</code><code class="java plain">{</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">conn = getConnection();</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">....</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">} </code><code class="java keyword">finally</code><code class="java plain">{</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">DBUtil.closeConnection(conn);</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number9 index8 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div></div><h2>使用 JavaDoc 中记录应用程序中的所有异常</h2> <p>把用 JavaDoc 记录运行时可能抛出的所有异常作为一种习惯，其中也尽量包括用户应该遵循的操作，以防这些异常发生。</p> <h1>总结</h1> <p>这篇文章首先介绍了什么是异常，以及异常的三种分类，然后通过 20 个最佳实践来讨论如何处理异常，希望能在以后异常处理的时候有所改进及感悟。</p> <div class="h1-menu" style="visibility: visible;"><div class="h1-menu-wrap" style="max-height: 604px;"><ul><li class="selected"><a href="javascript:void(0);" class="hide-txt h1">什么是异常？</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h1">异常分类</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h1">异常处理最佳实践</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">不要忽略捕捉的异常</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">在你的方法里抛出定义具体的检查性异常</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">捕获具体的子类而不是捕获 Exception 类</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">永远不要捕获 Throwable 类</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">始终正确包装自定义异常中的异常，以便堆栈跟踪不会丢失</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">要么记录异常要么抛出异常，但不要一起执行</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">finally 块中永远不要抛出任何异常</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">始终只捕获实际可处理的异常</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">不要使用 printStackTrace() 语句或类似的方法</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">对于不打算处理的异常，直接使用 finally</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">记住早 throw 晚 catch 原则</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">在异常处理后清理资源</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">只抛出和方法相关的异常</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">切勿在程序中使用异常来进行流程控制</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">尽早验证用户输入以在请求处理的早期捕获异常</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">一个异常只能包含在一个日志中</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">将所有相关信息尽可能地传递给异常</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">终止掉被中断线程</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">对于重复的 try-catch，使用模板方法</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h2">使用 JavaDoc 中记录应用程序中的所有异常</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h1">总结</a></li></ul></div></div></div>
+</div>
+<div class="flex-row-start mb-4" style="align-items:flex-start;">
+<div class="flex-row-start flex-auto" style="flex-wrap:wrap;">
+<a href="https://blog.nowcoder.net/wupx?tagName=Java" class="tag-label">Java</a>
+</div>
+<div class="flex-none ml-4 fs-s">
+<a href="javascript:void(0);" class="ml-2 js-nc-report" data-id="85362" data-type="73">举报</a>
+</div>
+</div>
+<div class="flex-row">
+<div class="action-btn js-action-collect" style="flex:0 0 30%"><i class="icon-collect-full"></i>
+<span>收藏 </span>
+</div>
+<div class="action-btn js-action-like" style="flex:0 0 30%">
+<i class="icon-thumb-full"></i>
+<span>赞 1 </span>
+</div>
+</div>
+</div>
+<div style="height:0px;overflow:hidden;"></div></div>
+<div class="mb-2">
+<div class="module-box module-zl block-item vux-1px">
+<div class="title-box">
+<div class="title-line"></div>
+<span class="flex-row-start">
+<span class="hide-txt flex-auto">相关专栏</span>
+</span>
+</div>
+</div>
+<a href="https://blog.nowcoder.net/zhuanlan/9MRo0P" target="_blank" class="module-box module-zl block-item block-link-item vux-1px flex-row-start">
+<img src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/5033606_1586080769546_948308D8830F836CF896632DDF4A587A" class="zl-cover small flex-none">
+<div class="mlr-2 flex-auto">
+<div class="mb-1">后端核心技术精讲</div>
+<div class="flex-row-start fs-s mt-1 color-gray">
+<span class="mr-2 pr-2 vux-1px-r">59篇文章</span>
+<span>16订阅</span>
+</div>
+</div>
+<span class="tag-label rectangle default single flex-none js-unfollow-zl" data-id="43">已订阅</span>
+</a>
+</div>
+<div data-v-81106a30="" class="mb-2"><div data-v-81106a30="" class="module-box block-item bg-white vux-1px"><div data-v-81106a30=""><div class="ptb-2 plr-3 title-box vux-1px-b"><div class="bg-green title-line"></div> <span class="flex-row-start"><span class="hide-txt" style="flex: 1 1 auto;">1条评论
+        </span> <span style="flex: 0 0 auto;"><div data-v-19223a24="" class="flex-none btn-select flex-row-start  no-border"><div data-v-19223a24="" class="hide-txt mr-1 flex-row-start flex-auto"><span data-v-19223a24="" class="flex-row"><img class="order-image mr-1" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/order-1.png">默认排序</span></div> <i data-v-19223a24="" class="icon-arrow-up fs-xs flex-none"></i> <i data-v-19223a24="" class="icon-arrow-down fs-xs flex-none"></i> <div data-v-19223a24="" class="select-items"><div data-v-19223a24="" class="select-item flex-row-start"><img class="order-image mr-1" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/order-1.png">默认排序</div><div data-v-19223a24="" class="select-item flex-row-start"><img class="order-image mr-1" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/order-0.png">较近在前</div><div data-v-19223a24="" class="select-item flex-row-start"><img class="order-image mr-1" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/order-2.png">较赞在前</div></div></div></span></span></div> <div class="flex-row color-font p-2" style="align-items: flex-start;"><a data-v-ed5cb6da="" href="https://www.nowcoder.com/5033606" target="_blank" class="flex-none"><img data-v-ed5cb6da="" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA" class="avatar"></a> <div class="ml-3 flex-auto hide-txt"><div class="flex-row mb-1" style="align-items: flex-start;"><div class="flex-auto hide-txt"><div class="flex-column"><a data-uid="5033606" href="https://www.nowcoder.com/5033606" target="_blank" class="flex-row-start fs-nickname level-color8" style="overflow: hidden; max-width: 100%;"><div style="max-width: 100%; overflow: hidden;"><div class="hide-txt">武培轩</div></div> <!----> <img src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/5.png" class="identity-image ml-1"></a></div> <div class="fs-s color-gray flex-row-start"><span class="color-gray">2020-04-05 18:20:19</span></div></div> <div class="ml-2 fs-s color-gray flex-none"><span class="pr-1 pb-2"><i class="icon-comment"></i> 0</span> <span class="pr-1 pb-2"><i class="icon-thumb"></i> 0
+                </span> <!----> <span class="flex-none bg-light-gray radius plr-1 color-white">1#</span></div></div> <div class="post-content">原创不易，欢迎点赞、收藏、订阅三连！</div> <!----></div></div> <!----> <!----></div> <div data-v-025ad490="" data-v-81106a30="" class="p-2 vux-1px-t"><div data-v-025ad490="" class="flex-row-start mb-2"><textarea data-v-025ad490="" placeholder="请留下你的观点吧~"></textarea></div> <div data-v-025ad490="" class="flex-row-start"><div data-v-025ad490="" class="flex-auto"></div> <button data-v-025ad490="" disabled="disabled" class="weui-btn flex-none weui-btn_disabled weui-btn_mini weui-btn_default"><!----> 发布</button></div></div></div></div>
+</div>
+<div class="nk-blog-footer flex-column">
+<div class="flex-row ft-web-name mb-4 plr-2">
+<img src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/56_1573647610912_E084CC631DBF241812D6BBFBF8DB7458">
+<span>牛客博客，记录你的成长</span>
+</div>
+<div class="flex-row ft-web-info fs-s">
+<a class="vux-1px-r" href="https://www.nowcoder.com/discuss/202952" target="_blank">关于博客</a>
+<a class="vux-1px-r" href="https://www.nowcoder.com/subject/index/b211632d69fd42f7b55aae38d4242fda" target="_blank">意见反馈</a>
+<a class="vux-1px-r" href="https://www.nowcoder.com/html/disclaimer" target="_blank">免责声明</a>
+<a href="https://www.nowcoder.com/" target="_blank">牛客网首页</a>
+</div>
+<div class="only-pc mt-4 fs-s color-gray">
+<div class="flex-row mb-1">
+<div>公司地址：北京市朝阳区北苑路北美国际商务中心K2座一层</div>
+<div class="mlr-2">联系方式：010-60728802(电话) </div>
+<div>admin@nowcoder.com</div>
+</div>
+<div class="flex-row">
+<div class="mr-2"><a href="http://www.beian.miit.gov.cn/" class="color-gray" target="_blank" data-allow-jump="1">京ICP备14055008号-1</a></div>
+<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502036488" class="flex-row-start color-gray" target="_blank" data-allow-jump="1"><img src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/ghs.png" style="width:18px;height:18px;">京公网安备 11010502036488号</a>
+</div>
+</div>
+</div>
+
+</div>
+<script>
+window.globalBlog = {
+isSelf:  true ,
+ownerUrl: 'wupx',
+ownerName: '武培轩',
+ownerTinyHead: 'https://images.nowcoder.com/images/20200106/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA?x-oss-process=image/resize,m_mfit,h_100,w_100',
+honorLevel: '8',
+ownerTypes: []
+};
+window.globalBlog.ownerTypes.push({id: '18536', name: 'Apollo', count: 1});
+window.globalBlog.ownerTypes.push({id: '20500', name: 'Git', count: 2});
+window.globalBlog.ownerTypes.push({id: '20498', name: 'Java', count: 36});
+window.globalBlog.ownerTypes.push({id: '20489', name: 'JDK源码解析', count: 8});
+window.globalBlog.ownerTypes.push({id: '18530', name: 'JVM', count: 7});
+window.globalBlog.ownerTypes.push({id: '20494', name: 'Leetcode', count: 38});
+window.globalBlog.ownerTypes.push({id: '20499', name: 'Maven', count: 1});
+window.globalBlog.ownerTypes.push({id: '22192', name: 'MySQL', count: 2});
+window.globalBlog.ownerTypes.push({id: '22195', name: 'Spring Boot', count: 5});
+window.globalBlog.ownerTypes.push({id: '18529', name: '剑指Offer', count: 97});
+window.globalBlog.ownerTypes.push({id: '64389', name: '工具', count: 1});
+window.globalBlog.ownerTypes.push({id: '22193', name: '微服务', count: 3});
+window.globalBlog.ownerTypes.push({id: '20496', name: '操作系统', count: 1});
+window.globalBlog.ownerTypes.push({id: '20495', name: '数据库', count: 3});
+window.globalBlog.ownerTypes.push({id: '15441', name: '未归档', count: 53});
+window.globalBlog.ownerTypes.push({id: '22194', name: '消息队列', count: 1});
+window.globalBlog.ownerTypes.push({id: '18532', name: '笔经', count: 5});
+window.globalBlog.ownerTypes.push({id: '20774', name: '笔试', count: 6});
+window.globalBlog.ownerTypes.push({id: '20497', name: '算法', count: 4});
+window.globalBlog.ownerTypes.push({id: '20490', name: '计算机网络', count: 6});
+window.globalBlog.ownerTypes.push({id: '18531', name: '设计模式', count: 12});
+window.globalBlog.ownerTypes.push({id: '15439', name: '读书笔记', count: 5});
+window.globalBlog.ownerTypes.push({id: '18528', name: '面经', count: 8});
+window.globalBlog.ownerTypes.push({id: '20773', name: '面试', count: 5});
+window.isLogin = true;
+window.globalInfo = {
+ownerId: '6177806',
+ownerName: '左耳。',
+ownerTinyHead: 'https://images.nowcoder.com/images/20180131/6177806_1517377041785_CF136957697082B3E3CCFC60660A670D?x-oss-process=image/resize,m_mfit,h_100,w_100',
+ownerMainHead: 'https://images.nowcoder.com/images/20180131/6177806_1517377041785_CF136957697082B3E3CCFC60660A670D?x-oss-process=image/resize,m_mfit,h_200,w_200',
+ownerEmail:  true ,
+ownerPhone:  true ,
+ownerType: '1',
+status: '0',
+honorLevel: '7',
+gender: '男',
+isCompleteInfo: true,
+canLoadInIframe: 'true'
+};
+window.useNeteaseCaptcha = true;
+</script>
+<script>
+window.ncDeployImageRoot = "//static.nowcoder.com/blog";
+window.ncJsInDev =  false ;
+window.ncJsInPre = false;
+window.deployWpJSRoot = "//static.nowcoder.com/blog/nowcoder/1.2.1358/static";
+window.ncJsPluginVersion = "1.0.17";
+window.ncIsInNowcoderMainSite = true;
+</script>
+<script src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/vendor.dll.js.下载"></script>
+<script type="text/javascript">
+if (!window.vendor_library) {
+var oBody = document.body;
+var aChild = oBody.childNodes;
+var oDv = document.createElement('div');
+oDv.innerHTML = [
+'<div style="text-align:center;">',
+'<div style="font-size:18px;margin:20px 0;font-weight: bold;">',
+'因你使用的网络运营商限制，导致静态文件加载出错，如果想要彻底解决问题，请联系你使用的网络运营商（如运营商不处理可以前往工信部投诉），也可以按照以下步骤修改电脑的DNS',
+'<br />推荐使用以下DNS: 223.5.5.5(首选) 和 119.29.29.29(备用)',
+'</div>',
+'<img style="border:1px solid #ccc;" src="//qqstatic.nowcoder.com/files/cdn.jpg" />',
+'</div>'].join('');
+aChild.length === 0 && oBody.appendChild(oDv);
+aChild.length > 0 && oBody.insertBefore(oDv, aChild[0]);
+}
+(function () {
+!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/2.1/gio.js","gio");
+gio('init', 'c196c3667d214851b11233f5c17f99d5', {});
+gio('setUserId', '6177806');
+ gio('people.set', 'user_register_new', 0); gio('send');
+})();
+</script>
+<script src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/jweixin-1.3.2.js.下载"></script>
+<script src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/common.js.下载"></script>
+<script type="text/javascript">
+window.pageInfo = {
+highQuality:false,
+recommendOption:-1,
+isAdmin:  false ,
+isTryRead:  false ,
+id: '85362',
+uuid: 'd50a721c950d4cd48f7b02df201c8390',
+url: 'wupx',
+authorId: '5033606',
+//当不是专栏文章，且作者本人查看的情况下，这个变量才会有意义，提示前端：这个人有专栏，问下他要不要收录这篇文章到专栏
+zhualanCount: '',
+//这篇博客关联的付费专栏的信息,以下字段仅在文章是专栏文章的时候有意义，不是专栏文章的时候都为空
+chargeZhuanlanName: '后端核心技术精讲',
+chargeZhuanlanId: '43',
+chargeZhuanlanPrice: '9.99',
+chargeArticlePrice: '0.99',
+//是否有阅读整篇文章的权限
+hasViewAllRight:  true };
+</script>
+<script src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/main.entry.js.下载"></script><div class="vux-confirm"><div class="vux-x-dialog"><div class="weui-mask" style="display: none;"></div> <div class="weui-dialog" style="display: none;"><!----> <div class="weui-dialog__bd"><div></div></div> <div class="weui-dialog__ft"><a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a> <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a></div></div></div></div><div class="vux-alert"><div class="vux-x-dialog"><div class="weui-mask" style="display: none;"></div> <div class="weui-dialog" style="display: none;"><div class="weui-dialog__hd"><strong class="weui-dialog__title"></strong></div> <div class="weui-dialog__bd"><div></div></div> <div class="weui-dialog__ft"><a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a></div></div></div></div><div class="vux-toast"><div class="weui-mask_transparent" style="display: none;"></div> <div class="weui-toast weui-toast_success" style="width: 7.6em; display: none;"><i class="weui-icon-success-no-circle weui-icon_toast"></i> <p class="weui-toast__content"></p></div></div><div class="weui-loading_toast vux-loading vux-loading-no-text" style="display: none;"><div class="weui-mask_transparent"></div> <div class="weui-toast"><i class="weui-loading weui-icon_toast"></i> <!----></div></div><div class="vux-popup-dialog bg-table vux-popup-left vux-popup-dialog vux-popup-dialog-r3zcf" style="width: 75%; display: none;"><div class="p-2 flex-column-center"><a data-v-ed5cb6da="" href="javascript:void(0);" target="_self" normal="true"><img data-v-ed5cb6da="" src="./36Java 异常处理的 20 个最佳实践，你知道几个？_牛客博客_files/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA" class="avatar-l"></a> <a data-uid="" href="javascript:void(0);" target="_self" class="txt-center fs-nickname level-color8"><span>武培轩</span> <!----> </a></div> <div class="pb-2"><!---->  <div class="weui-cells vux-no-group-title" style="margin-top: 0px;"> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">全部文章</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft">  <!----></div> </div> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">分类</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft vux-cell-arrow-transition vux-cell-arrow-down">  <!----></div> </div> <!----> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">归档</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft">  <!----></div> </div> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">标签</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft">  <!----></div> </div> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">去牛客网</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft">  <!----></div> </div></div> <!----></div> <!----></div><a class="vux-popup-mask" data-uuid=",r3zcf" href="javascript:void(0)"></a>
+
+
+<div id="jlzsCpn_0_component_0" class=" jlzs-container jlzs-gate" style="width: auto; height: 698px;"></div></body></html>

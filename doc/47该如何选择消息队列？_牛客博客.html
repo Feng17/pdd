@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://blog.nowcoder.net/n/800108a97cfe4b9593e262e3c0ca3068 -->
+<html style="font-size: 100px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="telephone=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="在高并发业务场景下，消息队列在流量削峰、解耦上有不可替代的作用。当前使用较多的消息队列有 RabbitMQ、RocketMQ、ActiveMQ、Kafka、ZeroMQ、Pulsar 等。 消息队列这">
+<meta name="keywords" content="应届生,应届生求职,校园招聘,校招,春招,秋招,实习,笔试,笔试题库,面试,面试题库,程序员,程序猿,程序猿,产品经理,PM,运营,游戏策划,软件工程师,java,c/c++,php,python,算法,机器学习,人工智能,数据挖掘,数据分析,数据分析师,前端工程师,测试工程师,测试开发工程师,运维工程师,安卓工程师,ios工程师,android,硬件工程师,电气工程师,嵌入式工程师,汽车制造研发,审计,会计,财务管理,市场营销,品牌管理,金融,四大,法务,销售,行政,人力资源,hr,管培生,地产,国企,银行,实习,实习生,招聘,找工作,牛客网">
+<title>该如何选择消息队列？_牛客博客</title>
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"><link charset="utf-8" rel="stylesheet" href="./47该如何选择消息队列？_牛客博客_files/katex.min.css"><script async="" src="./47该如何选择消息队列？_牛客博客_files/katex.min.js.下载"></script><script async="" src="./47该如何选择消息队列？_牛客博客_files/auto-render.min.js.下载"></script><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/jlzs.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/select.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/input.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/checkbox.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/jlzs.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/select.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/input.css" rel="stylesheet" type="text/css"><link href="chrome-extension://iihgchombimnadbbapofogflgbifgbgl/content/css/checkbox.css" rel="stylesheet" type="text/css"></head><body><div id="wx_logo" style="margin:0 auto;display:none;"><img src="./47该如何选择消息队列？_牛客博客_files/logo_87_87.png"></div>
+<script async="" src="./47该如何选择消息队列？_牛客博客_files/gio.js.下载"></script><script type="text/javascript">
+(function () {
+document.documentElement.style.fontSize = '100px';
+var meta = document.querySelector('meta[name="viewport"]');
+if (!meta) {
+meta = document.createElement('meta');
+meta.setAttribute('name', 'viewport');
+document.head.appendChild(meta);
+}
+meta.setAttribute('content', 'width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0');
+})();
+</script>
+<link rel="stylesheet" href="./47该如何选择消息队列？_牛客博客_files/fontcustom.css">
+<link rel="stylesheet" href="./47该如何选择消息队列？_牛客博客_files/common.css">
+<script type="text/javascript">
+var _hmt = _hmt || [];
+</script>
+<script type="text/javascript" src="./47该如何选择消息队列？_牛客博客_files/hm.js.下载"></script>
+<link rel="stylesheet" type="text/css" href="./47该如何选择消息队列？_牛客博客_files/main.entry.css">
+
+
+<div class="nk-blog-container blog-theme-6  no-banner-page ">
+<div class="flex-row-start nk-blog-header js-site-global-nav  is-fixed ">
+<div class="only-phone flex-row-start hide-txt flex-auto">
+<i class="icon-menu icon-l mr-1 js-nav-menu"></i>
+<span class="hide-txt nav-username js-nav-menu">武培轩</span>
+</div>
+<div class="only-phone" style="flex:none;"></div>
+<div class="only-pc flex-row-start hide-txt flex-auto">
+<a href="https://blog.nowcoder.net/wupx"><img class="nav-avatar" src="./47该如何选择消息队列？_牛客博客_files/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA"></a>
+<a class="hide-txt nav-username ml-1" href="https://blog.nowcoder.net/wupx">武培轩</a>
+<div class="flex-row-start ml-4 hide-txt">
+<a class="mr-2 pr-2 vux-1px-r" href="https://blog.nowcoder.net/wupx/22194" "="">消息队列</a>
+<a class="hide-txt" href="javascript:void(0);">该如何选择消息队列？</a>
+</div>
+</div>
+<div class="only-pc flex-row-start blog-custom-nav flex-none">
+<div class="blog-custom-nav-item"><i class="icon-home mr-1"></i><a href="https://www.nowcoder.com/" target="_blank">去牛客网</a></div>
+</div>
+</div>
+<div class="nk-blog-main">
+<div class="js-top-part bg-white mb-2 vux-1px-tb">
+<div class="module-box module-article">
+<h1 class="title-item strong fs-xxl mb-2">
+该如何选择消息队列？
+<a href="javascript:void(0);" class="tag-label rectangle default single">已购</a>
+
+</h1>
+<div class="mb-4">
+<div class="flex-row-start color-gray fs-s mb-2">
+<span class="mr-2 pr-2 vux-1px-r hide-txt">来自
+<a class="hide-txt" href="https://blog.nowcoder.net/zhuanlan/9MRo0P" target="_blank">【后端核心技术精讲】
+</a>
+</span>
+<span class="mr-2 pr-2 vux-1px-r flex-none">751 浏览</span>
+<span class="mr-2 pr-2 vux-1px-r flex-none">1 回复</span>
+<span class="flex-none">2019-10-25</span>
+<a href="javascript:void(0);" class="set-quality ml-2 only-pc flex-none" data-uuid="800108a97cfe4b9593e262e3c0ca3068" data-id="52535">
+</a>
+</div>
+<div class="flex-row">
+<a href="https://blog.nowcoder.net/profile/5033606"><img src="./47该如何选择消息队列？_牛客博客_files/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA(1)" class="avatar flex-none"></a>
+<div class="ml-2 flex-auto flex-row-start hide-txt">
+<div class="hide-txt"><a href="https://blog.nowcoder.net/profile/5033606" class="level-color8">武培轩</a>
+</div>
+<a href="https://www.nowcoder.com/discuss/224330" class="flex-none zlzz-icon">
+<img class="ml-1" src="./47该如何选择消息队列？_牛客博客_files/4533123_1584605346929_71FD1A643C56A33AE29EBE57679BDBE3">
+</a>
+</div>
+<div class="ml-2 flex-none">
+<a class="tag-label selected no-mb js-action-follow" href="javascript:void(0);">+关注</a>
+</div>
+</div>
+</div>
+<div class="mb-4 js-post-content">
+<div class="post-content js-nc-pop-image"><p>在高并发业务场景下，消息队列在流量削峰、解耦上有不可替代的作用。当前使用较多的消息队列有 RabbitMQ、RocketMQ、ActiveMQ、Kafka、ZeroMQ、Pulsar 等。</p> <p>消息队列这么多，到底该选择哪款消息队列呢？</p> <h1>选择消息队列的基本标准</h1> <p>虽然这些消息队列在功能和特性方面各有优劣，但我们在选择的时候要有一个基本标准。</p> <p>首先，必须是开源的产品。开源意味着，如果有一天你使用的消息队列遇到了一个影响你系统业务的 Bug，至少还有机会通过修改源代码来迅速修复或规避这个 Bug，解决你的系统的问题，而不是等待开发者发布的下一个版本来解决。</p> <p>其次，这个产品必须是近年来比较流行并且有一定社区活跃度的产品。流行的好处是，只要使用场景不太冷门，遇到 Bug 的概率会非常低，因为大部分遇到的 Bug，其他人早就遇到并且修复了。在使用过程中遇到的一些问题，也比较容易在网上搜索到类似的问题，然后很快的找到解决方案。还有一个优势就是，流行的产品与周边生态系统会有一个比较好的集成和兼容。</p> <p>最后，作为一款及格的消息队列，必须具备的几个特性包括：</p> <ul> <li>消息的可靠传递：确保不丢消息； </li><li>Cluster：支持集群，确保不会因为某个节点宕机导致服务不可用，当然也不能丢消息； </li><li>性能：具备足够好的性能，能满足绝大多数场景的性能要求。 </li></ul> <p>接下来看一下有哪些符合上面这些条件，可供选择的开源消息队列。</p> <h1 id="rabbitmq">RabbitMQ</h1> <p><img alt="RabbitMQ" src="./47该如何选择消息队列？_牛客博客_files/5033606_1571995968053_21220b05c831709aa02ef01571055381.png"></p> <p>首先，我们来看下消息队列 RabbitMQ。RabbitMQ 于 2007 年发布，是使用 Erlang 编程语言编写的，最早是为电信行业系统之间的可靠通信设计的，也是少数几个支持 AMQP 协议的消息队列之一。</p> <p>RabbitMQ：轻量级、迅捷，它的宣传口号，也很明确地表明了 RabbitMQ 的特点：Messaging that just works，开箱即用的消息队列。也就是说，RabbitMQ 是一个相当轻量级的消息队列，非常容易部署和使用。</p> <p>RabbitMQ 一个比较有特色的功能是支持非常灵活的路由配置，和其他消息队列不同的是，它在生产者（Producer）和队列（Queue）之间增加了一个 Exchange 模块，可以理解为交换机。</p> <p>Exchange 模块的作用和交换机非常相似，根据配置的路由规则将生产者发出的消息分发到不同的队列中。路由的规则也非常灵活，甚至可以自己来实现路由规则。如果正好需要这个功能，RabbitMQ 是个不错的选择。</p> <p>RabbitMQ 的客户端支持的编程语言大概是所有消息队列中最多的。</p> <p>接下来说下 RabbitMQ 的几个问题：</p> <ol> <li>RabbitMQ 对消息堆积的支持并不好，当大量消息积压的时候，会导致 RabbitMQ 的性能急剧下降。 </li><li>RabbitMQ 的性能是这几个消息队列中最差的，大概每秒钟可以处理几万到十几万条消息。如果应用对消息队列的性能要求非常高，那不要选择 RabbitMQ。 </li><li>RabbitMQ 使用的编程语言 Erlang，扩展和二次开发成本高。 </li></ol> <h1 id="rocketmq">RocketMQ</h1> <p><img alt="RocketMQ" src="./47该如何选择消息队列？_牛客博客_files/5033606_1571995968052_212227fb8c5f8385819d101571056604.png"></p> <p>RocketMQ 是阿里巴巴在 2012 年开源的消息队列产品，用 Java 语言实现，在设计时参考了 Kafka，并做出了自己的一些改进，后来捐赠给 Apache 软件基金会，2017 正式毕业，成为 Apache 的顶级项目。RocketMQ 在阿里内部被广泛应用在订单，交易，充值，流计算，消息推送，日志流式处理，Binglog 分发等场景。经历过多次双十一考验，它的性能、稳定性和可靠性都是值得信赖的。</p> <p>RocketMQ 有着不错的性能，稳定性和可靠性，具备一个现代的消息队列应该有的几乎全部功能和特性，并且它还在持续的成长中。</p> <p>RocketMQ 有非常活跃的中文社区，大多数问题可以找到中文的答案。RocketMQ 使用 Java 语言开发，源代码相对比较容易读懂，容易对 RocketMQ 进行扩展或者二次开发。</p> <p>RocketMQ 对在线业务的响应时延做了很多的优化，大多数情况下可以做到毫秒级的响应，如果你的应用场景很在意响应时延，那应该选择使用 RocketMQ。</p> <p>RocketMQ 的性能比 RabbitMQ 要高一个数量级，每秒钟大概能处理几十万条消息。</p> <p>RocketMQ 的劣势是与周边生态系统的集成和兼容程度不够。</p> <h1 id="kafka">Kafka</h1> <p><img alt="Kafka" src="./47该如何选择消息队列？_牛客博客_files/5033606_1571995968091_2120ea976826b168b99a201571056611.png"></p> <p>Apache Kafka 是一个分布式消息发布订阅系统。它最初由 LinkedIn 公司基于独特的设计实现为一个分布式的日志提交系统，之后成为 Apache 项目的一部分。</p> <p>在早期的版本中，为了获得极致的性能，在设计方面做了很多的牺牲，比如不保证消息的可靠性，可能会丢失消息，也不支持集群，功能上也比较简陋，这些牺牲对于处理海量日志这个特定的场景都是可以接受的。</p> <p>但是，随后几年 Kafka 逐步补齐了这些短板，当下的 Kafka 已经发展为一个非常成熟的消息队列产品，无论在数据可靠性、稳定性和功能特性等方面都可以满足绝大多数场景的需求。</p> <p>Kafka 与周边生态系统的兼容性是最好的没有之一，尤其在大数据和流计算领域，几乎所有的相关开源软件系统都会优先支持 Kafka。</p> <p>Kafka 性能高效、可扩展良好并且可持久化。它的分区特性，可复制和可容错都是不错的特性。</p> <p>Kafka 使用 Scala 和 Java 语言开发，设计上大量使用了批量和异步的思想，使得 Kafka 能做到超高的性能。Kafka 的性能，尤其是异步收发的性能，是三者中最好的，但与 RocketMQ 并没有量级上的差异，大约每秒钟可以处理几十万条消息。</p> <p>在有足够的客户端并发进行异步批量发送，并且开启压缩的情况下，Kafka 的极限处理能力可以超过每秒 2000 万条消息。</p> <p>但是 Kafka 异步批量的设计带来的问题是，它的同步收发消息的响应时延比较高，因为当客户端发送一条消息的时候，Kafka 并不会立即发送出去，而是要等一会儿攒一批再发送，在它的 Broker 中，很多地方都会使用这种先攒一波再一起处理的设计。当你的业务场景中，每秒钟消息数量没有那么多的时候，Kafka 的时延反而会比较高。所以，Kafka 不太适合在线业务场景。</p> <h1>消息队列对比</h1> <table> <thead> <tr>  <th>Kafka</th> <th>RocketMQ</th> <th>RabbitMQ</th> </tr> </thead> <tbody><tr> <td>单机吞吐量</td> <td>十万级</td> <td>十万级</td> <td>万级</td> </tr> <tr> <td>开发语言</td> <td>Java &amp; Scala</td> <td>Java</td> <td>Erlang</td> </tr> <tr> <td>消息延迟</td> <td>毫秒级</td> <td>毫秒级</td> <td>微秒级</td> </tr> <tr> <td>消息丢失</td> <td>参数优化配置后可做到0丢失</td> <td>参数优化配置后可做到0丢失</td> <td>有较低的概率丢失</td> </tr> <tr> <td>消费模式</td> <td>Pull</td> <td>Pull+Push</td> <td>Pull+Push</td> </tr> <tr> <td>topic数量对吞吐量的影响</td> <td>topic达到几十，几百个时，吞吐量会大幅度下降</td> <td>topic达到几百，几千个时，吞吐量会有较小幅度的下降</td> <td>\</td> </tr> <tr> <td>可用性</td> <td>非常高（分布式）</td> <td>非常高（主从）</td> <td>高（主从）</td> </tr> <tr> <td>总结</td> <td>吞吐量高，微秒级延时，分布式高可用，最好是支持较少topic数量，会有消息重复现象</td> <td>可支撑大规模topic数量，方便二次开发和扩展</td> <td>不支持集群动态扩容，扩展和二次开发难</td> </tr> </tbody></table> <h1>总结</h1> <p>本文分别介绍了 RabbitMQ，RocketMQ 和 Kafka 几种常见的消息队列，阐述了各种消息队列的主要特点和优劣势。</p> <p>在了解了上面这些开源消息队列各自的特点和优劣势后，对于消息队列及相关技术选型，相信你会有更深入的理解和认识。以下几条选择的建议可以参考：</p> <ul> <li>如果消息队列不是将要构建系统的重点，对消息队列功能和性能没有很高的要求，只需要一个快速上手易于维护的消息队列，建议使用 RabbitMQ。 </li><li>如果系统使用消息队列主要场景是处理在线业务，比如在交易系统中用消息队列传递订单，需要低延迟和高稳定性，建议使用 RocketMQ。 </li><li>如果需要处理海量的消息，像收集日志、监控信息或是埋点这类数据，或是你的应用场景大量使用了大数据、流计算相关的开源产品，那 Kafka 是最适合的消息队列。 </li></ul> <p>每一个消息队列都有自己的优劣势，需要根据现有系统的情况，选择最适合的消息队列，更多细节和原理性的东西，还需在实践中见真知！</p> <p><img alt="图片说明" src="./47该如何选择消息队列？_牛客博客_files/5033606_1571995976518_01A8C58B776341133D6E446F68B89312" title="图片标题"> </p> <blockquote> <p>参考</p> <p><a href="http://1t.click/aA3A" target="_blank">http://1t.click/aA3A</a></p> </blockquote> <div class="h1-menu" style="visibility: visible;"><div class="h1-menu-wrap" style="max-height: 604px;"><ul><li class="selected"><a href="javascript:void(0);" class="hide-txt h1">选择消息队列的基本标准</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h1">RabbitMQ</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h1">RocketMQ</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h1">Kafka</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h1">消息队列对比</a></li><li class=""><a href="javascript:void(0);" class="hide-txt h1">总结</a></li></ul></div></div></div>
+</div>
+<div class="flex-row-start mb-4" style="align-items:flex-start;">
+<div class="flex-row-start flex-auto" style="flex-wrap:wrap;">
+<a href="https://blog.nowcoder.net/wupx?tagName=%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97" class="tag-label">消息队列</a>
+</div>
+<div class="flex-none ml-4 fs-s">
+<a href="javascript:void(0);" class="ml-2 js-nc-report" data-id="52535" data-type="73">举报</a>
+</div>
+</div>
+<div class="flex-row">
+<div class="action-btn js-action-collect" style="flex:0 0 30%"><i class="icon-collect-full"></i>
+<span>收藏 </span>
+</div>
+<div class="action-btn js-action-like" style="flex:0 0 30%">
+<i class="icon-thumb-full"></i>
+<span>赞 1 </span>
+</div>
+</div>
+</div>
+<div style="height:0px;overflow:hidden;"></div></div>
+<div class="mb-2">
+<div class="module-box module-zl block-item vux-1px">
+<div class="title-box">
+<div class="title-line"></div>
+<span class="flex-row-start">
+<span class="hide-txt flex-auto">相关专栏</span>
+</span>
+</div>
+</div>
+<a href="https://blog.nowcoder.net/zhuanlan/9MRo0P" target="_blank" class="module-box module-zl block-item block-link-item vux-1px flex-row-start">
+<img src="./47该如何选择消息队列？_牛客博客_files/5033606_1586080769546_948308D8830F836CF896632DDF4A587A" class="zl-cover small flex-none">
+<div class="mlr-2 flex-auto">
+<div class="mb-1">后端核心技术精讲</div>
+<div class="flex-row-start fs-s mt-1 color-gray">
+<span class="mr-2 pr-2 vux-1px-r">59篇文章</span>
+<span>16订阅</span>
+</div>
+</div>
+<span class="tag-label rectangle default single flex-none js-unfollow-zl" data-id="43">已订阅</span>
+</a>
+</div>
+<div data-v-81106a30="" class="mb-2"><div data-v-81106a30="" class="module-box block-item bg-white vux-1px"><div data-v-81106a30=""><div class="ptb-2 plr-3 title-box vux-1px-b"><div class="bg-green title-line"></div> <span class="flex-row-start"><span class="hide-txt" style="flex: 1 1 auto;">1条评论
+        </span> <span style="flex: 0 0 auto;"><div data-v-19223a24="" class="flex-none btn-select flex-row-start  no-border"><div data-v-19223a24="" class="hide-txt mr-1 flex-row-start flex-auto"><span data-v-19223a24="" class="flex-row"><img class="order-image mr-1" src="./47该如何选择消息队列？_牛客博客_files/order-1.png">默认排序</span></div> <i data-v-19223a24="" class="icon-arrow-up fs-xs flex-none"></i> <i data-v-19223a24="" class="icon-arrow-down fs-xs flex-none"></i> <div data-v-19223a24="" class="select-items"><div data-v-19223a24="" class="select-item flex-row-start"><img class="order-image mr-1" src="./47该如何选择消息队列？_牛客博客_files/order-1.png">默认排序</div><div data-v-19223a24="" class="select-item flex-row-start"><img class="order-image mr-1" src="./47该如何选择消息队列？_牛客博客_files/order-0.png">较近在前</div><div data-v-19223a24="" class="select-item flex-row-start"><img class="order-image mr-1" src="./47该如何选择消息队列？_牛客博客_files/order-2.png">较赞在前</div></div></div></span></span></div> <div class="flex-row color-font p-2" style="align-items: flex-start;"><a data-v-ed5cb6da="" href="https://www.nowcoder.com/5033606" target="_blank" class="flex-none"><img data-v-ed5cb6da="" src="./47该如何选择消息队列？_牛客博客_files/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA" class="avatar"></a> <div class="ml-3 flex-auto hide-txt"><div class="flex-row mb-1" style="align-items: flex-start;"><div class="flex-auto hide-txt"><div class="flex-column"><a data-uid="5033606" href="https://www.nowcoder.com/5033606" target="_blank" class="flex-row-start fs-nickname level-color8" style="overflow: hidden; max-width: 100%;"><div style="max-width: 100%; overflow: hidden;"><div class="hide-txt">武培轩</div></div> <!----> <img src="./47该如何选择消息队列？_牛客博客_files/5.png" class="identity-image ml-1"></a></div> <div class="fs-s color-gray flex-row-start"><span class="color-gray">2020-07-11 18:42:55</span></div></div> <div class="ml-2 fs-s color-gray flex-none"><span class="pr-1 pb-2"><i class="icon-comment"></i> 0</span> <span class="pr-1 pb-2"><i class="icon-thumb"></i> 0
+                </span> <!----> <span class="flex-none bg-light-gray radius plr-1 color-white">1#</span></div></div> <div class="post-content">最好的关系就是互相成就，大家的点赞、收藏、留言三连就是我创作的最大动力。</div> <!----></div></div> <!----> <!----></div> <div data-v-025ad490="" data-v-81106a30="" class="p-2 vux-1px-t"><div data-v-025ad490="" class="flex-row-start mb-2"><textarea data-v-025ad490="" placeholder="请留下你的观点吧~"></textarea></div> <div data-v-025ad490="" class="flex-row-start"><div data-v-025ad490="" class="flex-auto"></div> <button data-v-025ad490="" disabled="disabled" class="weui-btn flex-none weui-btn_disabled weui-btn_mini weui-btn_default"><!----> 发布</button></div></div></div></div>
+</div>
+<div class="nk-blog-footer flex-column">
+<div class="flex-row ft-web-name mb-4 plr-2">
+<img src="./47该如何选择消息队列？_牛客博客_files/56_1573647610912_E084CC631DBF241812D6BBFBF8DB7458">
+<span>牛客博客，记录你的成长</span>
+</div>
+<div class="flex-row ft-web-info fs-s">
+<a class="vux-1px-r" href="https://www.nowcoder.com/discuss/202952" target="_blank">关于博客</a>
+<a class="vux-1px-r" href="https://www.nowcoder.com/subject/index/b211632d69fd42f7b55aae38d4242fda" target="_blank">意见反馈</a>
+<a class="vux-1px-r" href="https://www.nowcoder.com/html/disclaimer" target="_blank">免责声明</a>
+<a href="https://www.nowcoder.com/" target="_blank">牛客网首页</a>
+</div>
+<div class="only-pc mt-4 fs-s color-gray">
+<div class="flex-row mb-1">
+<div>公司地址：北京市朝阳区北苑路北美国际商务中心K2座一层</div>
+<div class="mlr-2">联系方式：010-60728802(电话) </div>
+<div>admin@nowcoder.com</div>
+</div>
+<div class="flex-row">
+<div class="mr-2"><a href="http://www.beian.miit.gov.cn/" class="color-gray" target="_blank" data-allow-jump="1">京ICP备14055008号-1</a></div>
+<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502036488" class="flex-row-start color-gray" target="_blank" data-allow-jump="1"><img src="./47该如何选择消息队列？_牛客博客_files/ghs.png" style="width:18px;height:18px;">京公网安备 11010502036488号</a>
+</div>
+</div>
+</div>
+
+</div>
+<script>
+window.globalBlog = {
+isSelf:  true ,
+ownerUrl: 'wupx',
+ownerName: '武培轩',
+ownerTinyHead: 'https://images.nowcoder.com/images/20200106/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA?x-oss-process=image/resize,m_mfit,h_100,w_100',
+honorLevel: '8',
+ownerTypes: []
+};
+window.globalBlog.ownerTypes.push({id: '18536', name: 'Apollo', count: 1});
+window.globalBlog.ownerTypes.push({id: '20500', name: 'Git', count: 2});
+window.globalBlog.ownerTypes.push({id: '20498', name: 'Java', count: 36});
+window.globalBlog.ownerTypes.push({id: '20489', name: 'JDK源码解析', count: 8});
+window.globalBlog.ownerTypes.push({id: '18530', name: 'JVM', count: 7});
+window.globalBlog.ownerTypes.push({id: '20494', name: 'Leetcode', count: 38});
+window.globalBlog.ownerTypes.push({id: '20499', name: 'Maven', count: 1});
+window.globalBlog.ownerTypes.push({id: '22192', name: 'MySQL', count: 2});
+window.globalBlog.ownerTypes.push({id: '22195', name: 'Spring Boot', count: 5});
+window.globalBlog.ownerTypes.push({id: '18529', name: '剑指Offer', count: 97});
+window.globalBlog.ownerTypes.push({id: '64389', name: '工具', count: 1});
+window.globalBlog.ownerTypes.push({id: '22193', name: '微服务', count: 3});
+window.globalBlog.ownerTypes.push({id: '20496', name: '操作系统', count: 1});
+window.globalBlog.ownerTypes.push({id: '20495', name: '数据库', count: 3});
+window.globalBlog.ownerTypes.push({id: '15441', name: '未归档', count: 53});
+window.globalBlog.ownerTypes.push({id: '22194', name: '消息队列', count: 1});
+window.globalBlog.ownerTypes.push({id: '18532', name: '笔经', count: 5});
+window.globalBlog.ownerTypes.push({id: '20774', name: '笔试', count: 6});
+window.globalBlog.ownerTypes.push({id: '20497', name: '算法', count: 4});
+window.globalBlog.ownerTypes.push({id: '20490', name: '计算机网络', count: 6});
+window.globalBlog.ownerTypes.push({id: '18531', name: '设计模式', count: 12});
+window.globalBlog.ownerTypes.push({id: '15439', name: '读书笔记', count: 5});
+window.globalBlog.ownerTypes.push({id: '18528', name: '面经', count: 8});
+window.globalBlog.ownerTypes.push({id: '20773', name: '面试', count: 5});
+window.isLogin = true;
+window.globalInfo = {
+ownerId: '6177806',
+ownerName: '左耳。',
+ownerTinyHead: 'https://images.nowcoder.com/images/20180131/6177806_1517377041785_CF136957697082B3E3CCFC60660A670D?x-oss-process=image/resize,m_mfit,h_100,w_100',
+ownerMainHead: 'https://images.nowcoder.com/images/20180131/6177806_1517377041785_CF136957697082B3E3CCFC60660A670D?x-oss-process=image/resize,m_mfit,h_200,w_200',
+ownerEmail:  true ,
+ownerPhone:  true ,
+ownerType: '1',
+status: '0',
+honorLevel: '7',
+gender: '男',
+isCompleteInfo: true,
+canLoadInIframe: 'true'
+};
+window.useNeteaseCaptcha = true;
+</script>
+<script>
+window.ncDeployImageRoot = "//static.nowcoder.com/blog";
+window.ncJsInDev =  false ;
+window.ncJsInPre = false;
+window.deployWpJSRoot = "//static.nowcoder.com/blog/nowcoder/1.2.1358/static";
+window.ncJsPluginVersion = "1.0.17";
+window.ncIsInNowcoderMainSite = true;
+</script>
+<script src="./47该如何选择消息队列？_牛客博客_files/vendor.dll.js.下载"></script>
+<script type="text/javascript">
+if (!window.vendor_library) {
+var oBody = document.body;
+var aChild = oBody.childNodes;
+var oDv = document.createElement('div');
+oDv.innerHTML = [
+'<div style="text-align:center;">',
+'<div style="font-size:18px;margin:20px 0;font-weight: bold;">',
+'因你使用的网络运营商限制，导致静态文件加载出错，如果想要彻底解决问题，请联系你使用的网络运营商（如运营商不处理可以前往工信部投诉），也可以按照以下步骤修改电脑的DNS',
+'<br />推荐使用以下DNS: 223.5.5.5(首选) 和 119.29.29.29(备用)',
+'</div>',
+'<img style="border:1px solid #ccc;" src="//qqstatic.nowcoder.com/files/cdn.jpg" />',
+'</div>'].join('');
+aChild.length === 0 && oBody.appendChild(oDv);
+aChild.length > 0 && oBody.insertBefore(oDv, aChild[0]);
+}
+(function () {
+!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/2.1/gio.js","gio");
+gio('init', 'c196c3667d214851b11233f5c17f99d5', {});
+gio('setUserId', '6177806');
+ gio('people.set', 'user_register_new', 0); gio('send');
+})();
+</script>
+<script src="./47该如何选择消息队列？_牛客博客_files/jweixin-1.3.2.js.下载"></script>
+<script src="./47该如何选择消息队列？_牛客博客_files/common.js.下载"></script>
+<script type="text/javascript">
+window.pageInfo = {
+highQuality:false,
+recommendOption:-1,
+isAdmin:  false ,
+isTryRead:  false ,
+id: '52535',
+uuid: '800108a97cfe4b9593e262e3c0ca3068',
+url: 'wupx',
+authorId: '5033606',
+//当不是专栏文章，且作者本人查看的情况下，这个变量才会有意义，提示前端：这个人有专栏，问下他要不要收录这篇文章到专栏
+zhualanCount: '',
+//这篇博客关联的付费专栏的信息,以下字段仅在文章是专栏文章的时候有意义，不是专栏文章的时候都为空
+chargeZhuanlanName: '后端核心技术精讲',
+chargeZhuanlanId: '43',
+chargeZhuanlanPrice: '9.99',
+chargeArticlePrice: '0.99',
+//是否有阅读整篇文章的权限
+hasViewAllRight:  true };
+</script>
+<script src="./47该如何选择消息队列？_牛客博客_files/main.entry.js.下载"></script><div class="vux-confirm"><div class="vux-x-dialog"><div class="weui-mask" style="display: none;"></div> <div class="weui-dialog" style="display: none;"><!----> <div class="weui-dialog__bd"><div></div></div> <div class="weui-dialog__ft"><a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a> <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a></div></div></div></div><div class="vux-alert"><div class="vux-x-dialog"><div class="weui-mask" style="display: none;"></div> <div class="weui-dialog" style="display: none;"><div class="weui-dialog__hd"><strong class="weui-dialog__title"></strong></div> <div class="weui-dialog__bd"><div></div></div> <div class="weui-dialog__ft"><a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a></div></div></div></div><div class="vux-toast"><div class="weui-mask_transparent" style="display: none;"></div> <div class="weui-toast weui-toast_success" style="width: 7.6em; display: none;"><i class="weui-icon-success-no-circle weui-icon_toast"></i> <p class="weui-toast__content"></p></div></div><div class="weui-loading_toast vux-loading vux-loading-no-text" style="display: none;"><div class="weui-mask_transparent"></div> <div class="weui-toast"><i class="weui-loading weui-icon_toast"></i> <!----></div></div><div class="vux-popup-dialog bg-table vux-popup-left vux-popup-dialog vux-popup-dialog-s46ju" style="width: 75%; display: none;"><div class="p-2 flex-column-center"><a data-v-ed5cb6da="" href="javascript:void(0);" target="_self" normal="true"><img data-v-ed5cb6da="" src="./47该如何选择消息队列？_牛客博客_files/5033606_1578287267108_364FA97E4848DF8F4CC77556AD6C1DCA" class="avatar-l"></a> <a data-uid="" href="javascript:void(0);" target="_self" class="txt-center fs-nickname level-color8"><span>武培轩</span> <!----> </a></div> <div class="pb-2"><!---->  <div class="weui-cells vux-no-group-title" style="margin-top: 0px;"> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">全部文章</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft">  <!----></div> </div> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">分类</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft vux-cell-arrow-transition vux-cell-arrow-down">  <!----></div> </div> <!----> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">归档</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft">  <!----></div> </div> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">标签</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft">  <!----></div> </div> <div class="weui-cell vux-tap-active weui-cell_access"><div class="weui-cell__hd"></div> <div class="vux-cell-bd vux-cell-primary"><p><label class="vux-label">去牛客网</label> </p> <span class="vux-label-desc"></span></div> <div class="weui-cell__ft">  <!----></div> </div></div> <!----></div> <!----></div><a class="vux-popup-mask" data-uuid=",s46ju" href="javascript:void(0)"></a>
+
+
+<div id="jlzsCpn_0_component_0" class=" jlzs-container jlzs-gate" style="width: auto; height: 698px;"></div></body></html>
